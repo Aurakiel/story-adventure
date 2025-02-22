@@ -24,6 +24,13 @@ class Weapon:
         self.name = name
         self.add_atk = atk
 
+#---Class for Enemy-------------------
+class Enemy:
+    def __init__(self, name, hp, atk):
+        self.name = name
+        self.hp = hp
+        self.atk = atk
+
 #---CLASS for NARRATOR---------------
 class Narrator:
     def __init__(self, text):

@@ -5,13 +5,12 @@
 import time
 import os
 import random
-from sa_class import Narrator
+from sa_class import Narrator, Enemy
 from sa_class import Hero, Armor, Weapon
 #defaults for hero, armor, weapon
 hero = Hero("YourName", 25, 5)
 armor = Armor("Clothes", 0)
 weapon = Weapon("Unarmed", 0)
-
 #-----------------------------------
 # Practical Functions
 #-----------------------------------
@@ -37,6 +36,19 @@ def stats_menu():
         |   HP: {hero.hp}     
         |  AtK: {hero.atk}    
         +----------------------+ """)
+#-----------------------------------
+# Enemy
+#-----------------------------------
+#creates random enemy
+def random_enemy():
+    enemy_names = ["Rat", "Hag", "Mimic", "Ogre", "Goblin", "Ooze", "Skeleton", "Pixie", "Shadow", "Ghost"]
+    enemy_hp = [50, 75, 100]
+    enemy_atk = [10, 15, 25]
+    enemy = Enemy("Name", 0, 0)
+    enemy.name = random.choice(enemy_names)
+    enemy.hp = random.choice(enemy_hp)
+    enemy.atk = random.choice(enemy_atk)
+    print(f"Name: {enemy.name}, Hp: {enemy.hp}, Atk: {enemy.atk}")
 
 #-----------------------------------
 # NARRATION
