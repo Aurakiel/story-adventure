@@ -9,8 +9,8 @@ from sa_class import Narrator
 from sa_class import Hero, Armor, Weapon
 #defaults for hero, armor, weapon
 hero = Hero("YourName", 25, 5)
-armor = Armor(0)
-weapon = Weapon(0)
+armor = Armor("Clothes", 0)
+weapon = Weapon("Unarmed", 0)
 
 #-----------------------------------
 # Practical Functions
@@ -120,29 +120,100 @@ def stats_explained():
     Make your Selection: """)
     match selection:
         case '1':
-            #adds the 1 list index to armor
+            #updates armor
+            armor.name = "Robe"
             armor.add_hp = armor_bonus[0]
-            #adds the armor bonus to hero stats
+            #adds the armor to hero stats
             hero.hp += armor.add_hp
-            #displays armor bonus
-            narration.text = f"Narrator: A robe can be fashionable. It's also added +{armor.add_hp} to your hit points."
+            #displays updates
+            narration.text = (f"Narrator: {armor.name}'s can be fashionable. It's also added +{armor.add_hp} to your "
+                              f"hit points.")
         #case 2 & 3 follow the same logic as case 1
         case '2':
+            armor.name = "Leather"
             armor.add_hp = armor_bonus[1]
             hero.hp += armor.add_hp
-            narration.text = (f"Narrator: Leather huh? We listen and we don't judge. It will add +{armor.add_hp} to your hit "
-                              f"points.")
+            narration.text = (f"Narrator: {armor.name} huh? We listen and we don't judge. It will add +{armor.add_hp} "
+                              f"to your hit points.")
         case '3':
+            armor.name = "Plate"
             armor.add_hp = armor_bonus[2]
             hero.hp += armor.add_hp
-            narration.text = (f"Narrator: Plate. Better safe than sorry I say. This choice will add +{armor.add_hp} to your "
-                              f"hit points.")
+            narration.text = (f"Narrator: {armor.name}. Better safe than sorry I say. This choice will add "
+                              f"+{armor.add_hp} to your hit points.")
         case _:
             #error randomizes the list index
             armor.add_hp = random.choice(armor_bonus)
+            #armor name assigned based off random list index
+            if armor.add_hp == armor_bonus[0]:
+                armor.name = "Robe"
+            elif armor.add_hp == armor_bonus[1]:
+                armor.name = "Leather"
+            else:
+                armor.name = "Plate"
             #adds the armor bonus to hero stats
             hero.hp += armor.add_hp
-            #displays armor bonus
-            narration.text = f"Narrator: It's fine. I'll do the choosing for you. I've added +{armor.add_hp} to your hit points."
-    narration.text = f"Narrator: Your hit points are looking better. Now lets add a weapon. Make your selection."
+            #displays updates
+            narration.text = (f"Narrator: Fine, I'll choose. Your {armor.name.lower()} will add +{armor.add_hp} to "
+                              f"your hit points.")
+    narration.text = f"Narrator: Now lets add a weapon. Make your selection."
+    #list for holding values based on selection
+    weapon_bonus = [15, 10, 5]
+    #get weapon selection
+    selection = input(""">
+    Type: 1 ......to wield a sword
+    Type: 2 ......to wield a mace
+    Type: 3 ......to wield a staff
+    Make your Selection: """)
+    match selection:
+        case '1':
+            #updates weapon
+            weapon.name = "Sword"
+            weapon.add_atk = weapon_bonus[0]
+            #adds the weapon to hero stats
+            hero.atk += weapon.add_atk
+            #displays updates
+            narration.text = (f"Narrator: A true hero indeed. Your {weapon.name.lower()} will add +{weapon.add_atk} "
+                              f"to your attack.")
+        #case 2 follows the same logic as case 1
+        case '2':
+            weapon.name = "Mace"
+            weapon.add_atk = weapon_bonus[1]
+            hero.atk += weapon.add_atk
+            narration.text = (f"Narrator: A big hammer never misses the nail. Your {weapon.name.lower()} will add "
+                              f"+{weapon.add_atk} to your attack.")
+        case '3':
+            #updates weapon
+            weapon.name = "Staff"
+            weapon.add_atk = weapon_bonus[2]
+            #updates hero - staff also adds it's bonus to hero hp
+            hero.atk += weapon.add_atk
+            hero.hp += weapon.add_atk
+            #displays updates
+            narration.text = (f"Narrator: Not the strongest weapon but the {weapon.name.lower()} adds +{weapon.add_atk} "
+                              f"to your attack & hit points.")
+        case _:
+            #error randomizes the list index
+            weapon.add_atk = random.choice(weapon_bonus)
+            if weapon.add_atk == weapon_bonus[0]:
+                weapon.name = "Sword"
+            elif weapon.add_atk == weapon_bonus[1]:
+                weapon.name = "Mace"
+            else:
+                weapon.name = "Staff"
+                #staff also adds it's bonus to the hero hp
+                hero.hp += weapon.add_atk
+                narration.text = f"Narrator: I've added +{weapon.add_atk} to your hit points out of pity."
+            #hero stats are updated
+            hero.atk += weapon.add_atk
+            #snarky display
+            narration.text = (f"Narrator: I see I'll be choosing your weapon. Your {weapon.name.lower()} will add "
+                              f"+{weapon.add_atk} to your attack.")
+    #brief pause to read
+    time.sleep(3)
+    #the screen is cleared to display updated stat menu
+    clear_screen()
+    stats_menu()
+    narration.text = f"Narrator: There your have it. It could be worse, it also could have been better."
+    narration.text = f"Narrator: The first chapter is about to be written. Let's begin."
     loading_bar()

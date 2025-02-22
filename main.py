@@ -9,8 +9,8 @@ from sa_functions import clear_screen, intro_screen, naming_narration, stats_exp
 from sa_class import Hero, Armor, Weapon
 #default for Hero, Armor, Weapon
 hero = Hero("YourName", 25, 5)
-armor = Armor(0)
-weapon = Weapon(0)
+armor = Armor("Clothes",0)
+weapon = Weapon("Unarmed",0)
 #------------------------------
 # Other Imports
 #------------------------------
@@ -18,7 +18,7 @@ import time
 #-----------------------------
 # Test Area (remove this)
 #------------------------------
-#stats_explained()
+
 #exit()
 #------------------------------
 # Start Program
@@ -27,7 +27,7 @@ intro_screen()
 gameStart = "yes"
 while gameStart == 'yes':
     naming_narration()
-    #stats_explained() - still in testing
+    stats_explained()
     print("more game")
     time.sleep(3)
 #------------------------------

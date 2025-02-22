@@ -14,12 +14,14 @@ class Hero:
 
 #---CLASS for Armor-----------------
 class Armor:
-    def __init__(self, hp):
+    def __init__(self, name, hp):
+        self.name = name
         self.add_hp = hp
 
 #---CLASS for Weapon-----------------
 class Weapon:
-    def __init__(self, atk):
+    def __init__(self, name, atk):
+        self.name = name
         self.add_atk = atk
 
 #---CLASS for NARRATOR---------------
@@ -37,5 +39,5 @@ class Narrator:
         self._text = new_text
         for char in self._text:
             print(char, end='', flush=True)
-            time.sleep(0.05)
+            time.sleep(0.04)
         print()
