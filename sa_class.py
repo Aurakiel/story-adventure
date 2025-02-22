@@ -12,6 +12,16 @@ class Hero:
         self.hp = hp
         self.atk = atk
 
+#---CLASS for Armor-----------------
+class Armor:
+    def __init__(self, hp):
+        self.add_hp = hp
+
+#---CLASS for Weapon-----------------
+class Weapon:
+    def __init__(self, atk):
+        self.add_atk = atk
+
 #---CLASS for NARRATOR---------------
 class Narrator:
     def __init__(self, text):
