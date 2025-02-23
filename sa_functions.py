@@ -7,10 +7,11 @@ import os
 import random
 from sa_class import Narrator, Enemy
 from sa_class import Hero, Armor, Weapon
-#defaults for hero, armor, weapon
-hero = Hero("YourName", 25, 5)
+#defaults for hero, armor, weapon, enemy
+hero = Hero("FunHero", 25, 25, 5)
 armor = Armor("Clothes", 0)
 weapon = Weapon("Unarmed", 0)
+enemy = Enemy("Type", 0, 0)
 #-----------------------------------
 # Practical Functions
 #-----------------------------------
@@ -32,23 +33,73 @@ def stats_menu():
     print(f"""        +----------------------+
         |   Player Stats      |
         +----------------------+
-        | Name: {hero.name}   
-        |   HP: {hero.hp}     
-        |  AtK: {hero.atk}    
+        |   Name: {hero.name}   
+        | Max HP: {hero.hp_max}/{hero.hp}     
+        |    AtK: {hero.atk}    
         +----------------------+ """)
+
 #-----------------------------------
 # Enemy
 #-----------------------------------
-#creates random enemy
 def random_enemy():
     enemy_names = ["Rat", "Hag", "Mimic", "Ogre", "Goblin", "Ooze", "Skeleton", "Pixie", "Shadow", "Ghost"]
-    enemy_hp = [50, 75, 100]
-    enemy_atk = [10, 15, 25]
-    enemy = Enemy("Name", 0, 0)
+    enemy_hp = [25, 40, 55]
+    enemy_atk = [6, 12, 18]
     enemy.name = random.choice(enemy_names)
     enemy.hp = random.choice(enemy_hp)
     enemy.atk = random.choice(enemy_atk)
-    print(f"Name: {enemy.name}, Hp: {enemy.hp}, Atk: {enemy.atk}")
+
+def random_encounter():
+    random_enemy()
+    hero_roll = random.randint(1, 20)
+    enemy_roll = random.randint(1, 20)
+    if hero_roll > enemy_roll:
+        while hero.hp > 0 and enemy.hp > 0:
+            attack_roll = random.randint(1, 20)
+            if attack_roll % 10 != 0:
+                enemy.hp -= hero.atk
+                print(f"Your attack lands! {enemy.name} loses {hero.atk}.")
+                time.sleep(1)
+            else:
+                print(f"The {enemy.name.lower()} dodges your attack!")
+                time.sleep(1)
+            enemy_attack = random.randint(1, 20)
+            if enemy_attack % 10 != 0:
+                hero.hp -= enemy.atk
+                print(f"The enemies attack lands! {hero.name} loses {enemy.atk}")
+                time.sleep(1)
+            else:
+                print(f"{hero.name} dodges the enemies attack!")
+                time.sleep(1)
+        if hero.hp > 0 or enemy.hp > 0:
+            if hero.hp <= 0:
+                print(f"Your story has ended.")
+            else:
+                print(f"You've won!")
+    elif enemy_roll > hero_roll:
+        while hero.hp > 0 and enemy.hp != 0:
+            enemy_attack = random.randint(1, 20)
+            if enemy_attack % 10 != 0:
+                hero.hp -= enemy.atk
+                print(f"The enemies attack lands! {hero.name} loses {enemy.atk}")
+                time.sleep(1)
+            else:
+                print(f"{hero.name} dodges the enemies attack!")
+            attack_roll = random.randint(1, 20)
+            if attack_roll % 10 != 0:
+                enemy.hp -= hero.atk
+                print(f"Your attack lands! {enemy.name} loses {hero.atk}.")
+                time.sleep(1)
+            else:
+                print(f"The {enemy.name.lower()} dodges your attack!")
+                time.sleep(1)
+        if hero.hp <= 0 or enemy.hp <= 0:
+            if hero.hp <= 0:
+                print(f"Your story has ended.")
+            else:
+                print(f"You've won!")
+    else:
+        print(f"You've scared off the enemy! {enemy.name} runs away!")
 
 #-----------------------------------
 # NARRATION
@@ -98,9 +149,11 @@ def naming_narration():
             narration.text = f"Narrator: I'm already beginning to question your life choices...{hero.name}."
             narration.text = f"Narrator: The name is officially yours.  Before we begin, we'll go over your stats."
             loading_bar()
+
         case 'yes':
             narration.text = f"Narrator: The name is officially yours. Before we begin, we'll go over your stats."
             loading_bar()
+
         case _:
             narration.text = f"Narrator: When given two options, you choose to go rogue."
             narration.text = f"Narrator: Learn, when this happens I'll be making choices for you."
@@ -112,6 +165,7 @@ def naming_narration():
             narration.text = f"Narrator: Going forward, following directions is in your best interest...{hero.name}."
             narration.text = f"Narrator: Before we begin, we'll go over your stats."
             loading_bar()
+
 def stats_explained():
     #calls the stats menu
     stats_menu()
@@ -136,7 +190,7 @@ def stats_explained():
             armor.name = "Robe"
             armor.add_hp = armor_bonus[0]
             #adds the armor to hero stats
-            hero.hp += armor.add_hp
+            hero.hp_max += armor.add_hp
             #displays updates
             narration.text = (f"Narrator: {armor.name}'s can be fashionable. It's also added +{armor.add_hp} to your "
                               f"hit points.")
@@ -144,13 +198,13 @@ def stats_explained():
         case '2':
             armor.name = "Leather"
             armor.add_hp = armor_bonus[1]
-            hero.hp += armor.add_hp
+            hero.hp_max += armor.add_hp
             narration.text = (f"Narrator: {armor.name} huh? We listen and we don't judge. It will add +{armor.add_hp} "
                               f"to your hit points.")
         case '3':
             armor.name = "Plate"
             armor.add_hp = armor_bonus[2]
-            hero.hp += armor.add_hp
+            hero.hp_max += armor.add_hp
             narration.text = (f"Narrator: {armor.name}. Better safe than sorry I say. This choice will add "
                               f"+{armor.add_hp} to your hit points.")
         case _:
@@ -164,7 +218,7 @@ def stats_explained():
             else:
                 armor.name = "Plate"
             #adds the armor bonus to hero stats
-            hero.hp += armor.add_hp
+            hero.hp_max += armor.add_hp
             #displays updates
             narration.text = (f"Narrator: Fine, I'll choose. Your {armor.name.lower()} will add +{armor.add_hp} to "
                               f"your hit points.")
@@ -200,7 +254,7 @@ def stats_explained():
             weapon.add_atk = weapon_bonus[2]
             #updates hero - staff also adds it's bonus to hero hp
             hero.atk += weapon.add_atk
-            hero.hp += weapon.add_atk
+            hero.hp_max += weapon.add_atk
             #displays updates
             narration.text = (f"Narrator: Not the strongest weapon but the {weapon.name.lower()} adds +{weapon.add_atk} "
                               f"to your attack & hit points.")
@@ -214,13 +268,15 @@ def stats_explained():
             else:
                 weapon.name = "Staff"
                 #staff also adds it's bonus to the hero hp
-                hero.hp += weapon.add_atk
+                hero.hp_max += weapon.add_atk
                 narration.text = f"Narrator: I've added +{weapon.add_atk} to your hit points out of pity."
             #hero stats are updated
             hero.atk += weapon.add_atk
             #snarky display
             narration.text = (f"Narrator: I see I'll be choosing your weapon. Your {weapon.name.lower()} will add "
                               f"+{weapon.add_atk} to your attack.")
+    #hp is set to max
+    hero.hp = hero.hp_max
     #brief pause to read
     time.sleep(3)
     #the screen is cleared to display updated stat menu

@@ -7,9 +7,10 @@ import time
 
 #---CLASS for HERO------------------
 class Hero:
-    def __init__(self, name, hp, atk):
+    def __init__(self, name, hp, hp_max, atk):
         self.name = name
         self.hp = hp
+        self.hp_max = hp_max
         self.atk = atk
 
 #---CLASS for Armor-----------------
