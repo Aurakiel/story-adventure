@@ -30,13 +30,37 @@ def loading_bar():
     clear_screen()
 
 def stats_menu():
-    print(f"""        +----------------------+
-        |   Player Stats      |
-        +----------------------+
-        |   Name: {hero.name}   
-        | Max HP: {hero.hp_max}/{hero.hp}     
-        |    AtK: {hero.atk}    
-        +----------------------+ """)
+    print(f"""
+    ███████████████████████████████
+    ██   Player Stats      
+    ███████████████████████████████
+    ██     Name: {hero.name}   
+    ██   Max HP: {hero.hp_max}/{hero.hp}     
+    ██      AtK: {hero.atk}    
+    ███████████████████████████████
+    """)
+
+def game_over():
+    print(r"""
+     ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ 
+    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗
+    ██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝
+    ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗
+    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║
+     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝ 
+     """)
+
+def victory():
+    print(f"""
+    ██╗   ██╗██╗ ██████╗████████╗ ██████╗ ██████╗ ██╗   ██╗    
+    ██║   ██║██║██╔════╝╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝    
+    ██║   ██║██║██║        ██║   ██║   ██║██████╔╝ ╚████╔╝     
+    ╚██╗ ██╔╝██║██║        ██║   ██║   ██║██╔══██╗  ╚██╔╝      
+     ╚████╔╝ ██║╚██████╗   ██║   ╚██████╔╝██║  ██║   ██║       
+      ╚═══╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝ 
+      
+        {hero.name}                        Hp: {hero.hp_max}/{hero.hp}
+      """)
 
 #-----------------------------------
 # Enemy
@@ -91,13 +115,11 @@ def random_encounter():
         if hero.hp <= 0 or enemy.hp <= 0:
             #the player dies
             if hero.hp <= 0:
-                print(f"Your story has ended.")
-                stats_menu()
+                game_over()
                 time.sleep(5)
             #the player wins the encounter
             else:
-                print(f"You've won!")
-                stats_menu()
+                victory()
                 time.sleep(5)
     #if the enemy begins - the same logic is followed in all situations
     elif enemy_roll > hero_roll:
@@ -123,13 +145,11 @@ def random_encounter():
         if hero.hp <= 0 or enemy.hp <= 0:
             #hero dies
             if hero.hp <= 0:
-                print(f"Your story has ended.")
-                stats_menu()
+                game_over()
                 time.sleep(5)
             #hero wins
             else:
-                print(f"You've won!")
-                stats_menu()
+                victory()
                 time.sleep(5)
     #if both roll the same number, the player avoids the encounter
     else:
@@ -140,19 +160,32 @@ def random_encounter():
 #-----------------------------------
 def intro_screen():
     #displays title screen and opening dialogue
-    print(r"""     _______________________
-    ||                     ||
-    ||                     ||
-    ||   STORY ADVENTURE   ||
-    ||   A World of Words  ||
-    ||                     ||
-    ||                     ||
-    ||                     ||
-    ||                     ||
-    ||                     ||
-    ||                     ||
-    ||_____________________||
-    |_______________________|""")
+    print(r"""                                       
+                    ██████████     ████████████                   
+                 ████        ███████          ██████              
+            █████              ███                █████████       
+    ███████                    ██                      ██████    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █     STORY ADVENTURE      ██    A World of Words      ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                          ██                          ██    
+    █                  ████    ██  ████████                ███   
+    █            ███████████████████████████████           ███   
+    █       █████████████████████████████████████████      ███   
+    ██████████████████████████████████████████████████████████   
+    ██████████                                      ██████████   
+                                                    
+    """)
     time.sleep(2)
     narration = Narrator("Title Screen")
     narration.text = f"Narrator: What have we here? A brave adventurer ready to begin their story?"

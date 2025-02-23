@@ -1,7 +1,7 @@
 #------------------------------
 # Imports from sa_functions.py
 #------------------------------
-from sa_functions import clear_screen, intro_screen, naming_narration, stats_explained, random_encounter
+from sa_functions import clear_screen, intro_screen, naming_narration, stats_explained, random_encounter, victory
 
 #------------------------------
 # Imports from sa_class.py
@@ -24,6 +24,7 @@ gameStart = "yes"
 while gameStart == 'yes':
     naming_narration()
     stats_explained()
+    #random_encounter() - testing
     print("more game")
     time.sleep(3)
 #------------------------------
