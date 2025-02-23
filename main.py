@@ -16,13 +16,6 @@ enemy = Enemy("Type", 0, 0)
 # Other Imports
 #------------------------------
 import time
-#-----------------------------
-# Test Area (remove this)
-#------------------------------
-#random_encounter(hero)
-#time.sleep(5)
-#clear_screen()
-#exit()
 #------------------------------
 # Start Program
 #------------------------------
@@ -31,7 +24,6 @@ gameStart = "yes"
 while gameStart == 'yes':
     naming_narration()
     stats_explained()
-    random_encounter()
     print("more game")
     time.sleep(3)
 #------------------------------

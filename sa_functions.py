@@ -42,62 +42,96 @@ def stats_menu():
 # Enemy
 #-----------------------------------
 def random_enemy():
+    #list to hold enemy types
     enemy_names = ["Rat", "Hag", "Mimic", "Ogre", "Goblin", "Ooze", "Skeleton", "Pixie", "Shadow", "Ghost"]
+    #list for random hps
     enemy_hp = [25, 40, 55]
-    enemy_atk = [6, 12, 18]
+    #list for random attacks
+    enemy_atk = [6, 10, 12]
+    #enemy stats are declared
     enemy.name = random.choice(enemy_names)
     enemy.hp = random.choice(enemy_hp)
     enemy.atk = random.choice(enemy_atk)
 
 def random_encounter():
+    #calls random enemy
     random_enemy()
+    #roll for initiative
     hero_roll = random.randint(1, 20)
     enemy_roll = random.randint(1, 20)
+    #if hero begins
     if hero_roll > enemy_roll:
+        #while both are alive
         while hero.hp > 0 and enemy.hp > 0:
+            #hero rolls for attack
             attack_roll = random.randint(1, 20)
+            #if the roll is not 10 or 20
             if attack_roll % 10 != 0:
+                #enemy's hp is reduced by hero attack
                 enemy.hp -= hero.atk
                 print(f"Your attack lands! {enemy.name} loses {hero.atk}.")
                 time.sleep(1)
+            #if the roll is 10 or 20 the enemy dodges
             else:
                 print(f"The {enemy.name.lower()} dodges your attack!")
                 time.sleep(1)
+            #enemy attacks
             enemy_attack = random.randint(1, 20)
+            #enemy hits if not 10 or 20
             if enemy_attack % 10 != 0:
+                #players hp is reduced by the attack
                 hero.hp -= enemy.atk
                 print(f"The enemies attack lands! {hero.name} loses {enemy.atk}")
                 time.sleep(1)
+           #if a 10 or 20 the player dodges
             else:
                 print(f"{hero.name} dodges the enemies attack!")
                 time.sleep(1)
-        if hero.hp > 0 or enemy.hp > 0:
-            if hero.hp <= 0:
-                print(f"Your story has ended.")
-            else:
-                print(f"You've won!")
-    elif enemy_roll > hero_roll:
-        while hero.hp > 0 and enemy.hp != 0:
-            enemy_attack = random.randint(1, 20)
-            if enemy_attack % 10 != 0:
-                hero.hp -= enemy.atk
-                print(f"The enemies attack lands! {hero.name} loses {enemy.atk}")
-                time.sleep(1)
-            else:
-                print(f"{hero.name} dodges the enemies attack!")
-            attack_roll = random.randint(1, 20)
-            if attack_roll % 10 != 0:
-                enemy.hp -= hero.atk
-                print(f"Your attack lands! {enemy.name} loses {hero.atk}.")
-                time.sleep(1)
-            else:
-                print(f"The {enemy.name.lower()} dodges your attack!")
-                time.sleep(1)
+        #if either hp drops to zero or below
         if hero.hp <= 0 or enemy.hp <= 0:
+            #the player dies
             if hero.hp <= 0:
                 print(f"Your story has ended.")
+                stats_menu()
+                time.sleep(5)
+            #the player wins the encounter
             else:
                 print(f"You've won!")
+                stats_menu()
+                time.sleep(5)
+    #if the enemy begins - the same logic is followed in all situations
+    elif enemy_roll > hero_roll:
+        while hero.hp > 0 and enemy.hp > 0:
+            #enemy attack
+            enemy_attack = random.randint(1, 20)
+            if enemy_attack % 10 != 0:
+                hero.hp -= enemy.atk
+                print(f"The enemies attack lands! {hero.name} loses {enemy.atk}")
+                time.sleep(1)
+            else:
+                print(f"{hero.name} dodges the enemies attack!")
+            #player attack
+            attack_roll = random.randint(1, 20)
+            if attack_roll % 10 != 0:
+                enemy.hp -= hero.atk
+                print(f"Your attack lands! {enemy.name} loses {hero.atk}.")
+                time.sleep(1)
+            else:
+                print(f"The {enemy.name.lower()} dodges your attack!")
+                time.sleep(1)
+        #upon death of either
+        if hero.hp <= 0 or enemy.hp <= 0:
+            #hero dies
+            if hero.hp <= 0:
+                print(f"Your story has ended.")
+                stats_menu()
+                time.sleep(5)
+            #hero wins
+            else:
+                print(f"You've won!")
+                stats_menu()
+                time.sleep(5)
+    #if both roll the same number, the player avoids the encounter
     else:
         print(f"You've scared off the enemy! {enemy.name} runs away!")
 

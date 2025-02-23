@@ -1,7 +1,19 @@
 # **Story Adventure**
 
 ## Project Notes: 02/22/2025 ##
-> It's been a wild couple days preventing me from working on the project
+
+> Update 2: Spent most of the day working on enemies and random encounters. Alot
+> of code has been added to the functions file. I just went back and added the comments
+> and caught a couple errors in the process.  It explained why it was working fine sometimes
+> and weirdly at random - finalized testing for now.  Everything appears to be working the 
+> way it should be. It's really only getting iffy when I'm pulling a function to test above
+> where it should be in the program. Running everything in order is as intended. <br> <br>
+> ***Next Step:*** More writing. The random encounters were the hard part. Next update
+> should progress the game along. I may need to play with enemy hp/atk more though - not going
+> to have a problem making sure it's playable in one sitting with the hero dying more often than
+> I'd like  👀 oops!
+> 
+> Update 1: It's been a wild couple days preventing me from working on the project
 > however, I've made up for lost time tonight. <br> <br>
 > I've finished all the pre-game set up. Player naming and initial stats are 
 > done for now unless changes are made later. In doing this I've added classes
