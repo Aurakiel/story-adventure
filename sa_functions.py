@@ -8,7 +8,7 @@ import random
 from sa_class import Narrator, Enemy
 from sa_class import Hero, Armor, Weapon
 #defaults for hero, armor, weapon, enemy
-hero = Hero("FunHero", 25, 25, 5)
+hero = Hero("FunHero", 50, 50, 5)
 armor = Armor("Clothes", 0)
 weapon = Weapon("Unarmed", 0)
 enemy = Enemy("Type", 0, 0)
@@ -20,13 +20,17 @@ def clear_screen():
 
 def loading_bar():
     print()
-    print(f"Generating Pages...")
-    print(f"<----------> 0%")
+    print(f"""
+    ┏┓           •      ┏┓       
+    ┃┓┏┓┏┓┏┓┏┓┏┓╋┓┏┓┏┓  ┃┃┏┓┏┓┏┓┏
+    ┗┛┗ ┛┗┗ ┛ ┗┻┗┗┛┗┗┫  ┣┛┗┻┗┫┗ ┛
+                     ┛       ┛   """)
+    print(f"[------------------] 0%")
     time.sleep(1)
-    print(f"<====------> 40%")
+    print(f"████████████-------] 60%")
     time.sleep(3)
-    print(f"<=========> 100%")
-    time.sleep(1)
+    print(f"██████████████████ 100%")
+    time.sleep(0.05)
     clear_screen()
 
 def stats_menu():
@@ -160,32 +164,17 @@ def random_encounter():
 #-----------------------------------
 def intro_screen():
     #displays title screen and opening dialogue
-    print(r"""                                       
-                    ██████████     ████████████                   
-                 ████        ███████          ██████              
-            █████              ███                █████████       
-    ███████                    ██                      ██████    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █     STORY ADVENTURE      ██    A World of Words      ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                          ██                          ██    
-    █                  ████    ██  ████████                ███   
-    █            ███████████████████████████████           ███   
-    █       █████████████████████████████████████████      ███   
-    ██████████████████████████████████████████████████████████   
-    ██████████                                      ██████████   
-                                                    
-    """)
+    print(r"""
+    █████████████████████████████████████████████
+    ╔═╗┌┬┐┌─┐┬─┐┬ ┬  ╔═╗┌┬┐┬  ┬┌─┐┌┐┌┌┬┐┬ ┬┬─┐┌─┐  
+    ╚═╗ │ │ │├┬┘└┬┘  ╠═╣ ││└┐┌┘├┤ │││ │ │ │├┬┘├┤   
+    ╚═╝ ┴ └─┘┴└─ ┴   ╩ ╩─┴┘ └┘ └─┘┘└┘ ┴ └─┘┴└─└─┘
+    
+    ╔═╗  ╦ ╦┌─┐┬─┐┬  ┌┬┐  ┌─┐┌─┐  ╦ ╦┌─┐┬─┐┌┬┐┌─┐
+    ╠═╣  ║║║│ │├┬┘│   ││  │ │├┤   ║║║│ │├┬┘ ││└─┐
+    ╩ ╩  ╚╩╝└─┘┴└─┴─┘─┴┘  └─┘└    ╚╩╝└─┘┴└──┴┘└─┘
+    █████████████████████████████████████████████
+""")
     time.sleep(2)
     narration = Narrator("Title Screen")
     narration.text = f"Narrator: What have we here? A brave adventurer ready to begin their story?"
@@ -199,7 +188,16 @@ def naming_narration():
     narration.text = f"Narrator: Every story has a main character.  In our tale, it's you."
     #prompt for user input
     hero.name = input(f">Please type your name as you'd have it appear: ")
-    #displays name given by user
+    #if the user tries to skip ahead
+    if hero.name == "":
+        narration.text = (f"Narrator: Pressing [ENTER] will not hurry me along, best to practice patience or your tale "
+                          f"will be decided by me. ")
+        hero.name = input(f">Please type your name as you'd have it appear: ")
+    #if the user still refuses to enter a name
+    while hero.name == "":
+        narration.text = (f"Narrator: You've entered what the programmers call a 'loop'. You'll need to enter a name to "
+                          f"escape it.")
+        hero.name = input(f">Please type your name as you'd have it appear: ")
     narration.text = (f"Narrator: {hero.name}, hero of legend! Are you sure this is the name you want echoed through "
                       f"history?")
     #prompt for name confirmation
@@ -259,6 +257,7 @@ def stats_explained():
             #adds the armor to hero stats
             hero.hp_max += armor.add_hp
             #displays updates
+            print()
             narration.text = (f"Narrator: {armor.name}'s can be fashionable. It's also added +{armor.add_hp} to your "
                               f"hit points.")
         #case 2 & 3 follow the same logic as case 1
@@ -266,12 +265,14 @@ def stats_explained():
             armor.name = "Leather"
             armor.add_hp = armor_bonus[1]
             hero.hp_max += armor.add_hp
+            print()
             narration.text = (f"Narrator: {armor.name} huh? We listen and we don't judge. It will add +{armor.add_hp} "
                               f"to your hit points.")
         case '3':
             armor.name = "Plate"
             armor.add_hp = armor_bonus[2]
             hero.hp_max += armor.add_hp
+            print()
             narration.text = (f"Narrator: {armor.name}. Better safe than sorry I say. This choice will add "
                               f"+{armor.add_hp} to your hit points.")
         case _:
@@ -287,6 +288,7 @@ def stats_explained():
             #adds the armor bonus to hero stats
             hero.hp_max += armor.add_hp
             #displays updates
+            print()
             narration.text = (f"Narrator: Fine, I'll choose. Your {armor.name.lower()} will add +{armor.add_hp} to "
                               f"your hit points.")
     narration.text = f"Narrator: Now lets add a weapon. Make your selection."
@@ -306,6 +308,7 @@ def stats_explained():
             #adds the weapon to hero stats
             hero.atk += weapon.add_atk
             #displays updates
+            print()
             narration.text = (f"Narrator: A true hero indeed. Your {weapon.name.lower()} will add +{weapon.add_atk} "
                               f"to your attack.")
         #case 2 follows the same logic as case 1
@@ -313,6 +316,7 @@ def stats_explained():
             weapon.name = "Mace"
             weapon.add_atk = weapon_bonus[1]
             hero.atk += weapon.add_atk
+            print()
             narration.text = (f"Narrator: A big hammer never misses the nail. Your {weapon.name.lower()} will add "
                               f"+{weapon.add_atk} to your attack.")
         case '3':
@@ -323,6 +327,7 @@ def stats_explained():
             hero.atk += weapon.add_atk
             hero.hp_max += weapon.add_atk
             #displays updates
+            print()
             narration.text = (f"Narrator: Not the strongest weapon but the {weapon.name.lower()} adds +{weapon.add_atk} "
                               f"to your attack & hit points.")
         case _:
@@ -330,18 +335,23 @@ def stats_explained():
             weapon.add_atk = random.choice(weapon_bonus)
             if weapon.add_atk == weapon_bonus[0]:
                 weapon.name = "Sword"
+                print()
+                narration.text = (f"Narrator: I see I'll be choosing your weapon. Your {weapon.name.lower()} will add "
+                                  f"+{weapon.add_atk} to your attack.")
             elif weapon.add_atk == weapon_bonus[1]:
                 weapon.name = "Mace"
+                print()
+                narration.text = (f"Narrator: I see I'll be choosing your weapon. Your {weapon.name.lower()} will add "
+                                  f"+{weapon.add_atk} to your attack.")
             else:
                 weapon.name = "Staff"
                 #staff also adds it's bonus to the hero hp
                 hero.hp_max += weapon.add_atk
+                print()
                 narration.text = f"Narrator: I've added +{weapon.add_atk} to your hit points out of pity."
+                narration.text = f"Narrator: Your {weapon.name.lower()} will also add +{weapon.add_atk} to your attack."
             #hero stats are updated
             hero.atk += weapon.add_atk
-            #snarky display
-            narration.text = (f"Narrator: I see I'll be choosing your weapon. Your {weapon.name.lower()} will add "
-                              f"+{weapon.add_atk} to your attack.")
     #hp is set to max
     hero.hp = hero.hp_max
     #brief pause to read
