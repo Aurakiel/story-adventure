@@ -164,6 +164,7 @@ def random_encounter():
     #if both roll the same number, the player avoids the encounter
     else:
         print(f"You've scared off the enemy! {enemy.name} runs away!")
+        time.sleep(2)
 
 #-----------------------------------
 # NARRATION
