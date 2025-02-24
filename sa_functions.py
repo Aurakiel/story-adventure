@@ -8,7 +8,7 @@ import random
 from sa_class import Narrator, Enemy
 from sa_class import Hero, Armor, Weapon
 #defaults for hero, armor, weapon, enemy
-hero = Hero("FunHero", 50, 50, 5)
+hero = Hero("FunHero", 50, 50, 20)
 armor = Armor("Clothes", 0)
 weapon = Weapon("Unarmed", 0)
 enemy = Enemy("Type", 0, 0)
@@ -82,6 +82,12 @@ def random_enemy():
     enemy.atk = random.choice(enemy_atk)
 
 def random_encounter():
+    print("""    
+╔═╗┬─┐┌─┐┌─┐┌─┐┬─┐┌─┐  ┌─┐┌─┐┬─┐  ╔╗ ┌─┐┌┬┐┌┬┐┬  ┌─┐┬
+╠═╝├┬┘├┤ ├─┘├─┤├┬┘├┤   ├┤ │ │├┬┘  ╠╩╗├─┤ │  │ │  ├┤ │
+╩  ┴└─└─┘┴  ┴ ┴┴└─└─┘  └  └─┘┴└─  ╚═╝┴ ┴ ┴  ┴ ┴─┘└─┘o
+    """)
+    time.sleep(2)
     #calls random enemy
     random_enemy()
     #roll for initiative

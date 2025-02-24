@@ -1,20 +1,22 @@
-#------------------------------
-# Imports from sa_functions.py
-#------------------------------
-from sa_functions import clear_screen, intro_screen, naming_narration, stats_explained, random_encounter
-#------------------------------
-# Imports from sa_class.py
-#------------------------------
+
+#---Imports from sa_functions.py-------------------------------------------------------------------------------------
+from sa_functions import clear_screen, intro_screen, naming_narration, stats_explained
+#---Imports from sa_class.py------------------------------------------------------------------------------------------
 from sa_class import Hero, Armor, Weapon, Enemy
 #default for Hero, Armor, Weapon, Enemy
 hero = Hero("MainName", 50, 50, 5)
 armor = Armor("Clothes",0)
 weapon = Weapon("Unarmed",0)
 enemy = Enemy("Type", 0, 0)
-#------------------------------
-# Other Imports
-#------------------------------
+#---Other Imports----------------------------------------------------------------------------------------------------
 import time
+#---Imports from sa_chapter(s).py-----------------------------------------------------------------------------------
+from sa_chapter_one import chapter_one
+#---TEST AREA-------------------------------------------------------------------------------------------------------
+clear_screen()
+chapter_one()
+time.sleep(3)
+exit()
 #------------------------------
 # Start Program
 #------------------------------

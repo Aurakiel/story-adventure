@@ -1,5 +1,15 @@
 # **Story Adventure**
 
+## Project Notes: 02/23/2025 ##
+
+> Dear reader, if you knew what life was slinging at me right now, you'd be proud of your
+> girl for sticking with it. Enough of that talk though...<br><br>
+> Got the console display cleaned up enough to start progressing the story.  After realizing these
+> chapters were going to require a ton of code, I figured it best to shove it all in their own files.
+> I've started Chapter One - everything is looking good so far. Lots of different match cases and if statements
+> to follow - testing area is holding chapter one for now so the hero stats are carried over from the function
+> file. I've boosted those defaults. Still really pumped the random encounters didn't take as long as expected.
+
 ## Project Notes: 02/22/2025 ##
 
 > Update 2: Spent most of the day working on enemies and random encounters. Alot
