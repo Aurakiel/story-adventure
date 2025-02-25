@@ -1,15 +1,10 @@
-#-----------------------------------
-# Functions
-#-----------------------------------
 #---IMPORTS-------------------------
-import time
-import os
-import random
+import time, os, random
 from sa_class import Narrator, Enemy
 from sa_class import Hero, Armor, Weapon
 #---GLOBALS-------------------------
 #defaults for hero, armor, weapon, enemy
-hero = Hero("FunHero", 50, 50, 20)
+hero = Hero("FunHero", 30, 30, 5)
 armor = Armor("Clothes", 0)
 weapon = Weapon("Unarmed", 0)
 enemy = Enemy("Type", 0, 0)
@@ -54,6 +49,7 @@ def game_over():
     ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║
      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝ 
      """)
+    exit()
 
 def victory():
     print(f"""
@@ -256,16 +252,16 @@ def stats_explained():
     #calls the stats menu
     stats_menu()
     narration = Narrator("Stats")
-    narration.text = f"Narrator: That's what you're working with {hero.name}. At least here in the beginning."
-    narration.text = f"Narrator: You'll boost those numbers as your story progresses...or it will end in tears."
-    narration.text = f"Narrator: Either way, it'll be an interesting read...what?"
-    narration.text = (f"Narrator: Fine, we'll add some equipment if it'll make you feel better. "
-                      f"It is dangerous to go alone...or so I'm told.")
-    narration.text = f"Narrator: As far as armor goes, you have a few options. Light, medium, or heavy?"
+    narration.text = f"""
+Narrator: That's you, broken down to parts. The good news is during your progression, should you survive a random 
+encounter with an enemy, your hp (hit points) will always return to max. So, should you die during a random encounter, 
+the dice simply weren't on your side. 
+
+I've been told, it is dangerous to go alone. Now is your opportunity to boost your hp by selecting an armor type."""
     #list for holding values based on selection
     armor_bonus = [10, 20, 30]
     #gets armor type
-    selection = input(""">
+    selection = input("""
     Type: 1 ......to select light armor
     Type: 2 ......to select medium armor
     Type: 3 ......to select heavy armor
@@ -279,8 +275,8 @@ def stats_explained():
             hero.hp_max += armor.add_hp
             #displays updates
             print()
-            narration.text = (f"Narrator: {armor.name}'s can be fashionable. It's also added +{armor.add_hp} to your "
-                              f"hit points.")
+            narration.text = (f"""
+Narrator: {armor.name}'s can be fashionable. It's also added +{armor.add_hp} to your hit points.""")
         #case 2 & 3 follow the same logic as case 1
         case '2':
             armor.name = "Leather"

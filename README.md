@@ -1,5 +1,19 @@
 # **Story Adventure**
 
+## Project Notes: 02/24/2025 ##
+
+> Mainly worked on Chapter One today. I deleted and altered so much code it became headache inducing
+> but I'm finally happy with how everything is working so far. <br><br>
+> 
+> Currently working on going back and cleaning up the narration in the naming/stats sections so it looks as polished 
+> as Chapter One. Also adding some explanation regarding random encounters. I've got them mostly happening after a 
+> selection and made it so the hero's hp is reset to max if they survive. The victory display does show how much hp
+> they had left over at the end just so they can see how close they came to death. <br><br>
+>
+> As much as I would like to have written the story myself, I just didn't have the time so AI got fed prompts and I made
+> alterations as needed. Chapter One is solid though...for now.  Holding out it stays that way. Two more chapters to go 
+> before wrapping things up.
+
 ## Project Notes: 02/23/2025 ##
 
 > Dear reader, if you knew what life was slinging at me right now, you'd be proud of your

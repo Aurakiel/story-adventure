@@ -1,9 +1,9 @@
 #---IMPORTS--------------------------
 from sa_functions import clear_screen, random_encounter, loading_bar, game_over, end_chapter
 from sa_class import Narrator, Hero
-#---Globals---------------------------
-hero = Hero("sa_chapter_one_hero", 50, 50, 20)
 import random, time
+#---Globals---------------------------
+hero = Hero("sa_chapter_one_hero", 30, 30, 5)
 #---Header---------------------------
 def chapter_one_header():
     print("""
