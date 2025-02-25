@@ -7,6 +7,7 @@ import os
 import random
 from sa_class import Narrator, Enemy
 from sa_class import Hero, Armor, Weapon
+#---GLOBALS-------------------------
 #defaults for hero, armor, weapon, enemy
 hero = Hero("FunHero", 50, 50, 20)
 armor = Armor("Clothes", 0)
@@ -65,6 +66,13 @@ def victory():
       
         {hero.name}                        Hp: {hero.hp_max}/{hero.hp}
       """)
+
+def end_chapter():
+    print(f"""
+╔═╗┌┐┌┌┬┐  ┌─┐┌─┐  ╔═╗┬ ┬┌─┐┌─┐┌┬┐┌─┐┬─┐
+║╣ │││ ││  │ │├┤   ║  ├─┤├─┤├─┘ │ ├┤ ├┬┘
+╚═╝┘└┘─┴┘  └─┘└    ╚═╝┴ ┴┴ ┴┴   ┴ └─┘┴└─
+""")
 
 #-----------------------------------
 # Enemy
@@ -130,6 +138,9 @@ def random_encounter():
             #the player wins the encounter
             else:
                 victory()
+                #restores player health to max
+                if hero.hp != hero.hp_max:
+                    hero.hp = hero.hp_max
                 time.sleep(5)
     #if the enemy begins - the same logic is followed in all situations
     elif enemy_roll > hero_roll:
@@ -160,11 +171,14 @@ def random_encounter():
             #hero wins
             else:
                 victory()
+                #restores player health to max
+                if hero.hp != hero.hp_max:
+                    hero.hp = hero.hp_max
                 time.sleep(5)
     #if both roll the same number, the player avoids the encounter
     else:
         print(f"You've scared off the enemy! {enemy.name} runs away!")
-        time.sleep(2)
+        time.sleep(5)
 
 #-----------------------------------
 # NARRATION
