@@ -1,5 +1,14 @@
 # **Story Adventure**
 
+## Project Notes: 02/25/2025 ##
+
+> Not a big update today. Just went back and cleaned up the display/narration in the pre-game chapters.
+> Everything looks more consistent. In doing this though, I did catch an area of code that needed some error catching.
+> I solved my problem with the player submitting an empty name, but I didn't account for it if the player
+> decided to change their name.  Shoved the while loop fix in to that section of code to prevent it from happening
+> there. I still need to create some dialogue during the game over screen, but it can wait until after the final two 
+> chapters are coded. 
+
 ## Project Notes: 02/24/2025 ##
 
 > Mainly worked on Chapter One today. I deleted and altered so much code it became headache inducing

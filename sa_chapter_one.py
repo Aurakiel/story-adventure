@@ -138,7 +138,7 @@ def cross_bridge():
     clear_screen()
     print(f"████████████████████████████████")
     narration.text = f"""
-Narrator: you take a cautious step onto the slick, weathered planks. The wood creaks beneath your weight, but it holds. 
+Narrator: You take a cautious step onto the slick, weathered planks. The wood creaks beneath your weight, but it holds. 
 The faint glow in the distance flickers, almost beckoning, as you move further across.
 
 Halfway over, the air grows unnaturally still. The forest around you seems to hush, as if holding its breath. Beneath 
