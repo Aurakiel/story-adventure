@@ -1,5 +1,14 @@
 # **Story Adventure**
 
+## Project Notes: 02/28/2025 ##
+
+> Cleaned up the comments so they were more consistent in style. Added a Chapter Two file and fully scripted the
+> "Go Forward" options.  Realized a text base game is going to have lots of code lines. I'm debating creating a second
+> file for the "Go West" options just to keep everything in its place. As of now, I've got 3 different beginnings for 
+> Chapter 3...on one path.  That's pretty tame all things considered. In order to keep it that way I had to make more 
+> choices than I wanted result in the player death. There's only one path out with the Crimson Orb and it's not direct.
+> First round of tests looked good. More story to be added - Next up are the "Go West" options for Chapter 2.
+
 ## Project Notes: 02/25/2025 ##
 
 > Not a big update today. Just went back and cleaned up the display/narration in the pre-game chapters.

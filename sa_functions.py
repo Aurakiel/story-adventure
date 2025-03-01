@@ -1,16 +1,16 @@
-#---IMPORTS-------------------------
+#---IMPORTS------------------------------------------------------------------------------------------------------------
 import time, os, random
 from sa_class import Narrator, Enemy
 from sa_class import Hero, Armor, Weapon
-#---GLOBALS-------------------------
+#---GLOBALS------------------------------------------------------------------------------------------------------------
 #defaults for hero, armor, weapon, enemy
 hero = Hero("FunHero", 30, 30, 5)
 armor = Armor("Clothes", 0)
 weapon = Weapon("Unarmed", 0)
 enemy = Enemy("Type", 0, 0)
-#-----------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 # Practical Functions
-#-----------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -69,9 +69,9 @@ def end_chapter():
 ╚═╝┘└┘─┴┘  └─┘└    ╚═╝┴ ┴┴ ┴┴   ┴ └─┘┴└─
 """)
 
-#-----------------------------------
-# Enemy
-#-----------------------------------
+#----------------------------------------------------------------------------------------------------------------------
+# Enemy/Encounter Handling
+#----------------------------------------------------------------------------------------------------------------------
 def random_enemy():
     #list to hold enemy types
     enemy_names = ["Rat", "Hag", "Mimic", "Ogre", "Goblin", "Ooze", "Skeleton", "Pixie", "Shadow", "Ghost"]
@@ -175,9 +175,9 @@ def random_encounter():
         print(f"You've scared off the enemy! {enemy.name} runs away!")
         time.sleep(5)
 
-#-----------------------------------
-# NARRATION
-#-----------------------------------
+#----------------------------------------------------------------------------------------------------------------------
+# NARRATION/Naming & Equipment
+#----------------------------------------------------------------------------------------------------------------------
 def intro_screen():
     #displays title screen and opening dialogue
     print(r"""
@@ -199,7 +199,7 @@ It really makes no difference, you're here now so we should begin."""
     print()
     print("█████████████████████████████████████████████")
     loading_bar()
-
+#---Naming-------------------------------------------------------------------------------------------------------------
 def naming_narration():
     #handles naming
     narration = Narrator("Naming Narration")
@@ -258,7 +258,7 @@ Narrator: When given two options, you choose to go rogue. Learn, when this happe
 Narrator: Going forward, following directions is in your best interest...{hero.name}. Before we begin, we'll discuss 
 your stats."""
             loading_bar()
-
+#---Stats/Equipment----------------------------------------------------------------------------------------------------
 def stats_explained():
     #calls the stats menu
     stats_menu()

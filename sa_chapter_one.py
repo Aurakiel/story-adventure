@@ -1,10 +1,11 @@
-#---IMPORTS--------------------------
+#---IMPORTS------------------------------------------------------------------------------------------------------------
+from sa_chapter_two import chapter_two_go_forward
 from sa_functions import clear_screen, random_encounter, loading_bar, game_over, end_chapter
 from sa_class import Narrator, Hero
 import random, time
-#---Globals---------------------------
+#---Globals------------------------------------------------------------------------------------------------------------
 hero = Hero("sa_chapter_one_hero", 30, 30, 5)
-#---Header---------------------------
+#---Header-------------------------------------------------------------------------------------------------------------
 def chapter_one_header():
     print("""
 ████████████████████████████████
@@ -12,9 +13,9 @@ def chapter_one_header():
 ║  ├─┤├─┤├─┘ │ ├┤ ├┬┘  ║ ║│││├┤ 
 ╚═╝┴ ┴┴ ┴┴   ┴ └─┘┴└─  ╚═╝┘└┘└─┘
 ████████████████████████████████""")
-#--------------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 # Chapter One
-#--------------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 def chapter_one():
     narration = Narrator("Chapter 1")
     clear_screen()
@@ -46,9 +47,9 @@ Make your Selection: """)
         case '2':
             random_encounter()
             go_west()
-#----------------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 # Go Forward
-#----------------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 def go_forward():
     narration = Narrator ("Go Forward")
     clear_screen()
@@ -77,7 +78,7 @@ Make your Selection: """)
         case '2':
             random_encounter()
             go_west()
-#---press_on----------------------
+#---press_on-----------------------------------------------------------------------------------------------------------
 def press_on():
     narration = Narrator("Press On")
     clear_screen()
@@ -106,6 +107,7 @@ Make your Selection: """)
         selection = str(random_selection)
     match selection:
         case '1':
+        #---GAME OVER--------------------------------------------------------------------------------------------------
             clear_screen()
             print(f"████████████████████████████████")
             narration.text = f"""
@@ -124,7 +126,7 @@ head, muffling your scream. You kick, you claw, but it’s useless—the grip ti
 the darkness takes you is a row of jagged teeth splitting open into an inhuman grin."""
             print()
             print(f"████████████████████████████████")
-            time.sleep(2)
+            time.sleep(6)
             game_over()
         case '2':
             random_encounter()
@@ -132,7 +134,7 @@ the darkness takes you is a row of jagged teeth splitting open into an inhuman g
         case '3':
             random_encounter()
             cross_bridge()
-#---cross_bridge-----------------------------
+#---cross_bridge-------------------------------------------------------------------------------------------------------
 def cross_bridge():
     narration = Narrator("Cross Bridge")
     clear_screen()
@@ -149,12 +151,14 @@ strange glow pulses softly through the trees, too steady to be firelight, too wa
 ahead, it promises answers—or danger."""
     print()
     print(f"████████████████████████████████")
-    time.sleep(12)
+    time.sleep(10)
     end_chapter()
     loading_bar()
-#------------------------------------
+#---Chapter Two Begins-------------------------------------------------------------------------------------------------
+    chapter_two_go_forward()
+#----------------------------------------------------------------------------------------------------------------------
 # Go West
-#------------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 def go_west():
     narration = Narrator("Go West")
     clear_screen()
@@ -186,7 +190,7 @@ Make your Selection: """)
         case '2':
             random_encounter()
             step_through()
-#---step_through----------------------------
+#---step_through-------------------------------------------------------------------------------------------------------
 def step_through():
     narration = Narrator("Step Through")
     clear_screen()
@@ -219,6 +223,7 @@ Make your Selection: """)
             random_encounter()
             go_forward()
         case '3':
+        #---GAME OVER--------------------------------------------------------------------------------------------------
             clear_screen()
             print(f"████████████████████████████████")
             narration.text = f"""
@@ -242,9 +247,9 @@ never meant to comfort—it was meant to lure.
 As the glow fades, the runes dim, waiting patiently for the next traveler."""
             print()
             print(f"████████████████████████████████")
-            time.sleep(2)
+            time.sleep(6)
             game_over()
-#---go_right---------------------------------
+#---go_right-----------------------------------------------------------------------------------------------------------
 def go_right():
     narration = Narrator("Go Right")
     clear_screen()
@@ -269,6 +274,6 @@ As your fingers brush the cold stone, the runes flare to life, the air vibrating
 open, revealing only darkness beyond."""
     print()
     print(f"████████████████████████████████")
-    time.sleep(12)
+    time.sleep(10)
     end_chapter()
     loading_bar()
